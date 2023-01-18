@@ -27,5 +27,14 @@ jobs:
         node_image: kindest/node:${{ matrix.k8s-version }}
     - run: kubectl cluster-info
 
+    - name: Wait 10 Seconds
+      run: sleep 10
+      
     - name: k8s pods
-      run: kubectl get pods -n kube-system
+      run: kubectl get pods
+      
+    - name: Deploy Hello-World Rust Application
+      run: bash bash_scripts/k8s-deployment.sh
+      
+    - name: Port-forward test
+      run: bash bash_scripts/k8s-test_pod.sh
