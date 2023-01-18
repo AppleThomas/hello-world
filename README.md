@@ -41,3 +41,39 @@ Output:
 2023-01-13T00:35:49.193122Z  INFO hello_world: listening on 0.0.0.0:3000
 ```
 
+## Docker Build
+
+### Build, Tag, and Test all in one script
+```shell
+bash build_and_test.sh
+```
+
+### Kill and remove unused containers
+```shell
+docker kill $(docker ps -q --filter ancestor=joeleav/hello-world:0.1.0)
+```
+```shell
+docker container prune
+```
+Press y if you wish to remove unused containers
+
+## Deploy to docker-desktop kubernetes
+
+Make sure you have Docker Desktop installed with Kubernetes enabled
+
+```shell
+bash k8s-deployment.sh
+```
+## Test Pod
+
+Port-Forward:
+```shell
+bash test_pod.sh
+```
+
+Open a new terminal window and make a request:
+```shell
+curl localhost:3000
+```
+
+
