@@ -43,6 +43,8 @@ Output:
 
 ## Docker Build
 
+[Docker Hub repo](https://hub.docker.com/r/joeleav/hello-world)
+
 ### Build, Tag, and Test all in one script
 ```shell
 bash bash_scripts/docker-build_and_test.sh
