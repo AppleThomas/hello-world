@@ -50,3 +50,6 @@ jobs:
     
     - name: port-forward
       run: bash bash_scripts/k8s-test_pod_for_action.sh
+    
+    - name: netstat
+      run: netstat -lt
