@@ -45,7 +45,7 @@ Output:
 
 ### Build, Tag, and Test all in one script
 ```shell
-bash build_and_test.sh
+bash bash_scripts/docker-build_and_test.sh
 ```
 
 ### Kill and remove unused containers
@@ -62,13 +62,13 @@ Press y if you wish to remove unused containers
 Make sure you have Docker Desktop installed with Kubernetes enabled
 
 ```shell
-bash k8s-deployment.sh
+bash bash_scripts/k8s-deployment.sh
 ```
 ## Test Pod
 
 Port-Forward:
 ```shell
-bash test_pod.sh
+bash bash_scripts/test_pod.sh
 ```
 
 Open a new terminal window and make a request:
