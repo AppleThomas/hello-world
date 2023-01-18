@@ -36,5 +36,8 @@ jobs:
     - name: Deploy Hello-World Rust Application
       run: bash bash_scripts/k8s-deployment.sh
       
+    - name: Wait for Hello-World pod
+      run: kubectl wait pods -n default -l app=hello-world --for condition=Ready --timeout=60s
+      
     - name: Port-forward test
       run: bash bash_scripts/k8s-test_pod.sh
