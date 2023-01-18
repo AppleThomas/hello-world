@@ -1,0 +1,43 @@
+name: Test K8s Deployment
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  k8s-deployment-demo:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        k8s-version: ['v1.26.0']
+        kubectl-version: ['v1.26.0']
+        kind-version: ['v0.17.0']
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Kind Cluster
+      uses: helm/kind-action@v1.5.0
+      with:
+        version: ${{ matrix.kind-version }}
+        cluster_name: kind
+        kubectl_version: ${{ matrix.kubectl-version }}
+        node_image: kindest/node:${{ matrix.k8s-version }}
+    - run: kubectl cluster-info
+
+    - name: Wait 10 Seconds
+      run: sleep 10
+      
+    - name: k8s pods
+      run: kubectl get pods
+      
+    - name: Deploy Hello-World Rust Application
+      run: bash bash_scripts/k8s-deployment.sh
+      
+    - name: Wait for Hello-World pod
+      run: kubectl wait pods -n default -l app=hello-world --for condition=Ready --timeout=60s
+      
+    - name: Port-forward test
+      run: bash bash_scripts/k8s-test_pod.sh
