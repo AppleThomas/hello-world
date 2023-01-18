@@ -44,6 +44,9 @@ jobs:
     
     - name: Grab Pod
       run: kubectl get pods -n default -l app=hello-world --output=jsonpath={.items..metadata.name}
+      
+    - name: Check w/o namespace default
+      run: kubectl get pods -l app=hello-world --output=jsonpath={.items..metadata.name}
     
     - name: port-forward
       run: bash bash_scripts/k8s-test_pod_for_action.sh
