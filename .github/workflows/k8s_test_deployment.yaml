@@ -1,0 +1,34 @@
+name: Test K8s Deployment
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  k8s-deployment-demo:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        k8s-version: ['v1.26.0']
+        kubectl-version: ['v1.26.0']
+        kind-version: ['v0.17.0']
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Kind Cluster
+      uses: helm/kind-action@v1.5.0
+      with:
+        version: ${{ matrix.kind-version }}
+        cluster_name: kind
+        kubectl_version: ${{ matrix.kubectl-version }}
+        node_image: kindest/node:${{ matrix.k8s-version }}
+    
+    - name: k8s cluser info
+    - run: kubectl cluster-info
+
+    - name: k8s pods
+      run: kubectl get pods -n kube-system
