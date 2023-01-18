@@ -68,14 +68,10 @@ bash bash_scripts/k8s-deployment.sh
 ```
 ## Test Pod
 
-Port-Forward:
+Port-forward as background process then make a request to the hello-world app:
 ```shell
 bash bash_scripts/test_pod.sh
 ```
 
-Open a new terminal window and make a request:
-```shell
-curl localhost:3000
-```
 
 
