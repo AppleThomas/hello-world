@@ -40,4 +40,4 @@ jobs:
       run: kubectl wait pods -n default -l app=hello-world --for condition=Ready --timeout=60s
       
     - name: Port-forward
-    - run: bash bash_scripts/k8s-test_pod_for_action.sh
+      run: bash bash_scripts/k8s-test_pod_for_action.sh
