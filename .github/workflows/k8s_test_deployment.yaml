@@ -30,14 +30,14 @@ jobs:
     - name: Wait 10 Seconds
       run: sleep 10
       
+    - name: Deploy Hello-World Rust Application
+      run: bash bash_scripts/k8s-deployment.sh
+      
     - name: k8s pods
       run: kubectl get pods -n kube-system
     
     - name: k8s services
       run: kubectl get services hello-world -n default
-      
-    - name: Deploy Hello-World Rust Application
-      run: bash bash_scripts/k8s-deployment.sh
       
     - name: Wait for Hello-World pod
       run: kubectl wait pods -n default -l app=hello-world --for condition=Ready --timeout=60s
