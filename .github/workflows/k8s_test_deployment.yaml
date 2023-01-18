@@ -31,7 +31,10 @@ jobs:
       run: sleep 10
       
     - name: k8s pods
-      run: kubectl get pods
+      run: kubectl get pods -n kube-system
+    
+    - name: k8s services
+      run: kubectl get services hello-world -n default
       
     - name: Deploy Hello-World Rust Application
       run: bash bash_scripts/k8s-deployment.sh
