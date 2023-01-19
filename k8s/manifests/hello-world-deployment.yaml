@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: joeleav/hello-world:0.1.0
+        image: joeleav/hello-world:%IMAGE_TAG%
         ports:
         - containerPort: 3000
