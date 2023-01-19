@@ -25,7 +25,7 @@ jobs:
         cluster_name: kind
         kubectl_version: ${{ matrix.kubectl-version }}
         node_image: kindest/node:${{ matrix.k8s-version }}
-        config: ./k8s/config/kind.yaml
+        #config: ./k8s/config/kind.yaml
     - run: kubectl cluster-info
 
     - name: Wait 10 Seconds
