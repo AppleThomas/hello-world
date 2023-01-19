@@ -25,7 +25,6 @@ jobs:
         cluster_name: kind
         kubectl_version: ${{ matrix.kubectl-version }}
         node_image: kindest/node:${{ matrix.k8s-version }}
-        #config: ./k8s/config/kind.yaml
     - run: kubectl cluster-info
 
     - name: Wait 10 Seconds
@@ -33,6 +32,9 @@ jobs:
       
     - name: Deploy Hello-World Rust Application
       run: bash bash_scripts/k8s-deployment.sh
+      
+    - name: get nodes
+      run: kubectl get nodes -o wide
       
     - name: k8s pods
       run: kubectl get pods -n kube-system
@@ -46,14 +48,5 @@ jobs:
     - name: Grab Pod
       run: kubectl get pods -n default -l app=hello-world --output=jsonpath={.items..metadata.name}
       
-    - name: Check w/o namespace default
-      run: kubectl get pods -l app=hello-world --output=jsonpath={.items..metadata.name}
-    
     - name: port-forward
       run: bash bash_scripts/k8s-test_pod_for_action.sh
-      
-    - name: get nodes
-      run: kubectl get nodes -o wide
-    
-    - name: netstat
-      run: netstat -lt
