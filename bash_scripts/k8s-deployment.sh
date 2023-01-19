@@ -1,6 +1,15 @@
 #!/bin/bash
 
-echo 'IMAGE_TAG:'"$1"''
+if [ -z "$1" ]
+then
+  echo "\$1 IS EMPTY"
+  arg1=${1:-"latest"}
+  set -- "${arg1}"
+  unset arg1
+  echo 'IMAGE_TAG IS '"$1"''
+else
+  echo 'IMAGE_TAG IS '"$1"''
+fi
 
 sed -i 's/%IMAGE_TAG%/'"$1"'/g' k8s/manifests/hello-world-deployment.yaml
 
