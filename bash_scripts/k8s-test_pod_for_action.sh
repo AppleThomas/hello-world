@@ -7,4 +7,4 @@ kubectl port-forward $appPod 45287:3000 &
 sleep 10
 
 curl -v localhost:45287
-curl -v 172.18.0.2:30007
+#curl -v 172.18.0.2:30007
