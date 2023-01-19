@@ -2,8 +2,8 @@
 
 appPod=$(kubectl get pods -n default -l app=hello-world --output=jsonpath={.items..metadata.name})
 
-kubectl port-forward $appPod :3000 &
+#kubectl port-forward $appPod :3000 &
 
-sleep 10
+#sleep 10
 
-curl -v localhost:3000
+#curl -v localhost:3000
