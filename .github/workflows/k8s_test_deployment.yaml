@@ -51,6 +51,9 @@ jobs:
     
     - name: port-forward
       run: bash bash_scripts/k8s-test_pod_for_action.sh
+      
+    - name: get nodes
+      run: kubectl get nodes -o wide
     
     - name: netstat
       run: netstat -lt
