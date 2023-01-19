@@ -116,3 +116,11 @@ Hello, World!
 
 ### Removal
 Go to your Docker Desktop application > Settings > Kubernetes > Click 'Reset Kubernetes Cluster'.
+
+## Github Actions
+
+There are two workflows defined in .github/workflows/
+1. Build and Publish Docker Image
+  - This workflow builds the image, creates a running container from the image, and makes a request to the webserver. Then the workflow authenticates with Docker Hub using Github Action Secrets and pushes the image to the repository.
+2. Test K8s Deployment
+  - This workflow runs a lightweight Kind Kubernetes cluster and deploys the application to the Kubernetes environment. The workflow waits for the Hello-World pod to be ready and connects to the Hello-World server using a port-forward. Finally, a request is made to the webserver and the Kind cluster is shut down.
