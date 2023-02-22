@@ -117,6 +117,30 @@ Hello, World!
 ### Removal
 Go to your Docker Desktop application > Settings > Kubernetes > Click 'Reset Kubernetes Cluster'.
 
+## FluxCD
+
+Make sure that you have the Flux CLI installed.
+
+## Export credentials
+Export your GitHib personal access token and username:
+```shell
+export GITHUB_TOKEN=<your-token>
+export GITHUB_USER=<your-username>
+```
+
+## Check your Kubernetes cluster
+Check to see if you have everything needed to run Flux
+```shell
+flux check --pre
+```
+
+## Flux bootstrap
+Run bootstrap for a public repository on a personal account
+```shell
+flux bootstrap github --owner=<user> --repository=hello-world --private=false --personal=true --path=clusters/my-cluster
+```
+
+
 ## Github Actions
 
 There are two workflows defined in .github/workflows/
