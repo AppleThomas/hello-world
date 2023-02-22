@@ -103,7 +103,7 @@ pod/hello-world-fd5fb64d9-sg9mk condition met
 
 Port-forward as background process then make a request to the hello-world app:
 ```shell
-bash bash_scripts/test_pod.sh
+bash bash_scripts/k8s-test_pod.sh
 ```
 
 Output:
@@ -140,6 +140,22 @@ Run bootstrap for a public repository on a personal account
 flux bootstrap github --owner=<user> --repository=hello-world --private=false --personal=true --path=clusters/my-cluster
 ```
 
+## Watch Flux sync the application
+Use the flux get command to watch the app
+```shell
+flux get kustomizations --watch
+```
+
+The output should look similar to:
+```shell
+NAME        REVISION      SUSPENDED READY MESSAGE                        
+flux-system main/ba05c0b  False     True  Applied revision: main/ba05c0b  
+```
+
+Check if the app has been deployed on your cluster:
+```shell
+kubectl -n default get deployments,services
+```
 
 ## Github Actions
 
