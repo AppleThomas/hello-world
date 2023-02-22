@@ -152,11 +152,6 @@ NAME        REVISION      SUSPENDED READY MESSAGE
 flux-system main/ba05c0b  False     True  Applied revision: main/ba05c0b  
 ```
 
-Check if the app has been deployed on your cluster:
-```shell
-kubectl -n default get deployments,services
-```
-
 ## Github Actions
 
 There are two workflows defined in .github/workflows/
