@@ -121,26 +121,26 @@ Go to your Docker Desktop application > Settings > Kubernetes > Click 'Reset Kub
 
 Make sure that you have the Flux CLI installed.
 
-## Export credentials
+### Export credentials
 Export your GitHib personal access token and username:
 ```shell
 export GITHUB_TOKEN=<your-token>
 export GITHUB_USER=<your-username>
 ```
 
-## Check your Kubernetes cluster
+### Check your Kubernetes cluster
 Check to see if you have everything needed to run Flux
 ```shell
 flux check --pre
 ```
 
-## Flux bootstrap
+### Flux bootstrap
 Run bootstrap for a public repository on a personal account
 ```shell
 flux bootstrap github --owner=<user> --repository=hello-world --private=false --personal=true --path=clusters/my-cluster
 ```
 
-## Watch Flux sync the application
+### Watch Flux sync the application
 Use the flux get command to watch the app
 ```shell
 flux get kustomizations --watch
